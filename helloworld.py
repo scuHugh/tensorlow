@@ -37,3 +37,29 @@ def load_file(filename):
 
 data = load_file('d:/dataset/cifar-10/test_batch')
 print(data.keys())
+
+# reshape
+a = np.zeros((10,2))
+print(a.T)
+print(np.reshape(a,(a.shape[0],-1)))
+
+# np.dot
+# 矩阵乘法
+a = np.array([[1,2,3],[4,5,6]]) # 2*3
+b = np.array([[1,2],[3,4],[5,6]]) # 3*2
+dot1 = np.dot(a,b) #  [[22 28],[49 64]] 2*2
+dot2 = np.dot(b,a) # [[ 9 12 15],[19 26 33],[29 40 51]] 3*3
+dot3 = b@a # [[ 9 12 15],[19 26 33],[29 40 51]] 3*3
+# dot4 = np.multiply(a,b) #error
+print("dot1 %s" %(dot1))
+print("dot2 %s" %(dot2))
+print("dot3 %s" %(dot3))
+
+
+# np.multiply
+# 对应元素相乘
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+b = np.array([[7, 8, 9], [4, 7, 1]])
+print(a*b)  # [[ 7 16 27], [16 35  6]]
+print(np.multiply(a,b)) # [[ 7 16 27], [16 35  6]]
