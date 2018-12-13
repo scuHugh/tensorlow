@@ -24,7 +24,10 @@ from abc import abstractmethod
 import collections
 import functools
 # Set headless-friendly backend.
-import matplotlib; matplotlib.use('Agg')  # pylint: disable=multiple-statements
+import matplotlib;
+from flask import json
+
+matplotlib.use('Agg')  # pylint: disable=multiple-statements
 import matplotlib.pyplot as plt  # pylint: disable=g-import-not-at-top
 import numpy as np
 import PIL.Image as Image
@@ -555,7 +558,6 @@ def visualize_boxes_and_labels_on_image_array(
     min_score_thresh=.5,
     agnostic_mode=False,
     line_thickness=4,
-    img_name='',
     groundtruth_box_visualization_color='black',
     skip_scores=False,
     skip_labels=False):
@@ -601,6 +603,8 @@ def visualize_boxes_and_labels_on_image_array(
   """
   # Create a display string (and color) for every box location, group any boxes
   # that correspond to the same location.
+  x1, y1, x2, y2,class_name = -1, -1, -1, -1,'null'
+  result=[]
   box_to_display_str_map = collections.defaultdict(list)
   box_to_color_map = collections.defaultdict(str)
   box_to_instance_masks_map = {}
@@ -649,9 +653,16 @@ def visualize_boxes_and_labels_on_image_array(
     y1=round(ymin*img_height)
     x2=round(xmax*img_width)
     y2=round(ymax*img_height)
-    clas=class_name
-    newRow =img_name+'\t%s\t%s\t%s\t%s\t%s'%(x1,y1,x2,y2,clas)
-    with open('d:/dataset/dog/ai.txt', 'a+') as f:
+    data=json.dumps({
+        'x1': x1,
+        'x2': x2,
+        'y1': y1,
+        'y2': y2,
+        'label': class_name
+    })
+    result.append(data)
+    newRow ='\t%s\t%s\t%s\t%s\t%s'%(x1,y1,x2,y2,class_name)
+    with open('d:/test1/ai.txt', 'a+') as f:
         f.write(newRow+'\n')
 
     if instance_masks is not None:
@@ -685,7 +696,7 @@ def visualize_boxes_and_labels_on_image_array(
           radius=line_thickness / 2,
           use_normalized_coordinates=use_normalized_coordinates)
 
-  return image
+  return x1,x2,y1,y2,class_name,result
 
 
 
