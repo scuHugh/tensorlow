@@ -29,8 +29,8 @@ def get_results(pic_path):
     if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
         raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
 
-    PATH_TO_FROZEN_GRAPH = r'C:/Anaconda/envs/tensorflow/ObjectDetection/models/research/object_detection/dog/bixiong_dog_graph/frozen_inference_graph.pb'  #
-    PATH_TO_LABELS = r'C:/Anaconda/envs/tensorflow/ObjectDetection/models/research/object_detection/dog/bixiong.pbtxt'
+    PATH_TO_FROZEN_GRAPH = r'C:/Anaconda/envs/tensorflow/ObjectDetection/models/research/object_detection/ssd_resnet50_v1_fpn/frozen_inference_graph.pb'  #
+    PATH_TO_LABELS = r'C:/Anaconda/envs/tensorflow/ObjectDetection/models/research/object_detection/data/mscoco_label_map.pbtxt'
     print('Loading model...')
     detection_graph = tf.Graph()
     with detection_graph.as_default():
