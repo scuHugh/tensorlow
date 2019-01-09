@@ -5,8 +5,8 @@
 # @File     ：mysql_to_csv.py
 import csv
 
-f = open('./docs/dr.txt', encoding="UTF-8")
-with open('./docs/dr.csv', "w", newline='') as fout:
+f = open('./docs/dr/135dr.txt', encoding="UTF-8")
+with open('./docs/135dr.csv', "w", newline='') as fout:
   writer = csv.writer(fout)
   for line in f.readlines():
         t=line.strip().split('\t')

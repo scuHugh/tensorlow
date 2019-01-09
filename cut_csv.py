@@ -6,18 +6,18 @@
 import csv
 import os
 
-path = './docs/dr.csv'
+path = './docs/dr/135dr.csv'
 
-with open(path, 'r', newline='') as file:
+with open(path) as file:
     csvreader = csv.reader(file)
     a = next(csvreader)
     i = j = 1
     for row in csvreader:
         # 每50000个就j加1， 然后就有一个新的文件名
-        if i % 50000 == 0:
+        if i % 10000 == 0:
             j += 1
             print("生成"+str(j)+".csv")
-        csv_path = './docs/dr/'+str(j) + '.csv'
+        csv_path = './docs/dr/135_'+str(j) + '.csv'
         if not os.path.exists(csv_path):
             with open(csv_path, 'w', newline='') as file:
                 csvwriter = csv.writer(file)

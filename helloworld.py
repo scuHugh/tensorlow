@@ -8,6 +8,8 @@ import tensorflow as tf
 import numpy as np
 import pickle
 
+from flask import json, request, jsonify
+
 tensor = [1,2,3,4,5,6]
 A = [[1,2,3,4,6,5]]
 B = [[[1,3],
@@ -63,3 +65,6 @@ a = np.array([[1, 2, 3], [4, 5, 6]])
 b = np.array([[7, 8, 9], [4, 7, 1]])
 print(a*b)  # [[ 7 16 27], [16 35  6]]
 print(np.multiply(a,b)) # [[ 7 16 27], [16 35  6]]
+
+data = [[1, 3, 4], [2, 3, 5], [1, 2, 3, 5], [2, 5]]
+print(list(data))
